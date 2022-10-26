@@ -1,9 +1,9 @@
-## Welcome to Side Project
+## Welcome to PROJECT NAME
 
 [![Python](https://img.shields.io/badge/python-3.10-green)](https://www.python.org)
 
 
-Side Project
+PROJECT NAME
 
 ### Project Requirements
 
@@ -54,7 +54,7 @@ This project organizes your settings in this way:
 Please copy (do not rename) `.env.credentials` to `.env` file:
 
 ```shell
-$ cd /path/to/side_project
+$ cd /path/to/PROJECT NAME
 $ cp .env.credentials .env
 ```
 
@@ -76,7 +76,7 @@ Use the following commands to install or reinstall Project.
 2. On HOST Terminal, run
 
 ```bash
-$ cd /path/to/oferta_maker
+$ cd /path/to/PROJECT NAME
 $ make install
 $ docker-compose build
 ```
@@ -91,8 +91,7 @@ $ docker-compose build
 * [https://code.visualstudio.com/docs/remote/containers#_opening-a-terminal](https://code.visualstudio.com/docs/remote/containers#_opening-a-terminal)
 
 1. On menu Terminal, click "New Terminal"
-2. Type command `make migrate` or `python manage.py migrate` (both are
-   equal)
+2. Type command `python manage.py migrate`
 
 
 ### Test
@@ -175,8 +174,7 @@ my_awesome_lib = "<1.2.3"  # reason: Because github issue #123
 After edit `pyproject.toml` open your Terminal and type:
 
 ```shell
-# Alias for "poetry update", this command will work too.
-$ make update
+$ poetry update
 ```
 
 This command will update the `poetry.lock`, pinning the latest

@@ -15,7 +15,7 @@ def init_celery_tracing(*args, **kwargs):
         return ""
 
 
-app = Celery("mstock_app")
+app = Celery("project_name")
 
 # Using a string here means the worker doesn"t have to serialize
 # the configuration object to child processes.

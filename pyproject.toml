@@ -1,3 +1,67 @@
+[environment]
+project.allow_all_origins = false
+project.allowed_hosts = ["*"]
+
+[environment.local]
+project.allow_all_origins = true
+project.debug = true
+project.log_level = "DEBUG"
+
+[environment.dev]
+project.allow_all_origins = false
+
+[environment.stg]
+project.allow_all_origins = false
+
+[environment.prd]
+project.allow_all_origins = false
+
+[tool.black]
+exclude = '''
+(
+  /(
+      \.eggs         # exclude a few common directories in the
+    | \.git          # root of the project
+    | \.hg
+    | \.mypy_cache
+    | \.tox
+    | \.venv
+    | \venv
+    | \.aws-sam
+    | _build
+    | buck-out
+    | build
+    | dist
+    | migrations
+    | node_modules
+    | dependencies
+  )/
+)
+'''
+include = '\.pyi?$'
+line-length = 120
+target-version = ['py38']
+
+[tool.isort]
+ensure_newline_before_comments = true
+force_grid_wrap = 0
+include_trailing_comma = true
+line_length = 120
+multi_line_output = 3
+profile = "black"
+use_parentheses = true
+
+[tool.semantic_release]
+branch = "main"
+build_command = "python -m pip install -U poetry && poetry build"
+upload_to_pypi = false
+upload_to_release = true
+version_variable = [
+  "core/__init__.py:__version__",
+  "pyproject.toml:version",
+]
+
+
 [tool.poetry]
 name = "side_project"
 version = "0.1.0"

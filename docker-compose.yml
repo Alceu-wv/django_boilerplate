@@ -1,0 +1,63 @@
+version: '3.3'
+services:
+  lint:
+    build: .
+    image: python:3.10.5
+    env_file: .env
+    entrypoint: ./entrypoint-dev.sh
+  api:
+    extends:
+      service: lint
+    ports:
+      - '8001:8001'
+    depends_on:
+      - db
+    volumes:
+      - .:/app
+    environment:
+      PROJECT_SERVICE_TYPE: 'api'
+      LOCALSTACK_HOST: "localstack"
+  db:
+    image: postgres:11
+    ports:
+      - '5500:5432'
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: postgres
+  redis:
+    image: redis:latest
+    ports:
+      - 6379
+  worker:
+    image: python:3.10.5
+    env_file: .env
+    volumes:
+      - .:/app
+    depends_on:
+      - redis
+      - db
+    environment:
+      PROJECT_SERVICE_TYPE: 'worker'
+      LOCALSTACK_HOST: "localstack"
+  beat:
+    image: python:3.10.5
+    env_file: .env
+    volumes:
+      - .:/app
+    depends_on:
+      - redis
+      - db
+    environment:
+      PROJECT_SERVICE_TYPE: 'beat'
+      LOCALSTACK_HOST: "localstack"
+  localstack:
+    image: localstack/localstack
+    ports:
+      - 4566
+      - 4571
+    environment:
+      SERVICES: sqs, s3
+      HOSTNAME: localstack
+      HOSTNAME_EXTERNAL: localstack
+

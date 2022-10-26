@@ -1,0 +1,47 @@
+[tool.poetry]
+name = "side_project"
+version = "0.1.0"
+description = ""
+authors = ["Alceu-wv <alceu.wv@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+requests = "^2.28.1"
+psycopg2 = "^2.9.3"
+celery = {extras = ["redis"], version = "*"}
+Django = "<4.1"
+django_rest_schemas = "^1.0.1"
+djangorestframework = "^3.14"
+django-celery-beat = "^2.3.0"
+django-celery-results = "2.4.0"
+django-cors-headers = "*"
+drf-spectacular = "*"
+loguru = "*"
+gunicorn = "*"
+arrow = "*"
+asbool = "*"
+boto3 = "*"
+
+
+[tool.poetry.dev-dependencies]
+pylint = "*"
+pylint-django = "*"
+pytest = "*"
+pytest-black = "*"
+pytest-coverage = "*"
+pytest-django = "*"
+pytest-mock = "^3.6.1"
+pytest-pylint = "*"
+requests-mock = "*"
+Faker = "*"
+black = "*"
+django-debug-toolbar = "*"
+factory-boy = "*"
+ipython = "*"
+isort = "*"
+mock = "*"
+pre-commit = "*"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"

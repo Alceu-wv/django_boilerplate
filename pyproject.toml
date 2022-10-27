@@ -1,4 +1,5 @@
 [environment]
+project.debug = true
 project.allow_all_origins = false
 project.allowed_hosts = ["*"]
 
@@ -85,6 +86,7 @@ gunicorn = "*"
 arrow = "*"
 asbool = "*"
 boto3 = "*"
+stela = "^4.0.2"
 
 
 [tool.poetry.dev-dependencies]

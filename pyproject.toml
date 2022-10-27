@@ -1,7 +1,11 @@
 [environment]
+project.name = "main_app"
+project.secret_key = "foo"
 project.debug = true
 project.allow_all_origins = false
 project.allowed_hosts = ["*"]
+project.show_debug_toolbar = true
+project.show_django_pages = true
 
 [environment.local]
 project.allow_all_origins = true
@@ -87,6 +91,7 @@ arrow = "*"
 asbool = "*"
 boto3 = "*"
 stela = "^4.0.2"
+stringcase = "^1.2.0"
 
 
 [tool.poetry.dev-dependencies]

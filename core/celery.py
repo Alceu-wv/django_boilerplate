@@ -4,16 +4,10 @@ from asbool import asbool
 from celery import Celery
 from celery.schedules import crontab
 from celery.signals import worker_process_init
+from loguru import logger
 
 # set the default Django settings module for the "celery" program.
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "core.settings")
-
-
-@worker_process_init.connect(weak=False)
-def init_celery_tracing(*args, **kwargs):
-    if not asbool(os.environ.get("OTEL_EXPORTER_ACTIVE")):
-        return ""
-
 
 app = Celery("main_app")
 
@@ -28,9 +22,9 @@ app.autodiscover_tasks()
 
 app.conf.timezone = "UTC"
 
-# app.conf.beat_schedule = {
-#     "health_check": {
-#         "task": "worker_health_check",
-#         "schedule": crontab(minute="*/1"),
-#     },
-# }
+app.conf.beat_schedule = {
+    "health_check": {
+        "task": "worker_health_check",
+        "schedule": crontab(minute="*/1"),
+    },
+}

@@ -135,6 +135,16 @@ USE_TZ = True
 
 # Celery
 CELERY_RESULT_BACKEND = "django-db"
+CELERY_BROKER_URL = "redis://redis:6379"
+CELERY_RESULT_BACKEND = "redis://redis:6379"
+
+if settings["project.broker_type"] == "sqs":
+    CELERY_BROKER_TRANSPORT_OPTIONS = {
+        "region": settings["project.aws_region"],
+        "polling_interval": 3,
+        "visibility_timeout": 3600,
+        "queue_name_prefix": f"main-app-{ENV}-",
+    }
 
 
 # Static files (CSS, JavaScript, Images)

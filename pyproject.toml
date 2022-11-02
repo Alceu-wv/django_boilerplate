@@ -1,3 +1,9 @@
+[tool.stela]
+default_environment = "local"
+environment_variable_name = "ENV"
+show_logs = false
+use_environment_layers = true
+
 [environment]
 project.name = "main_app"
 project.secret_key = "foo"
@@ -6,6 +12,8 @@ project.allow_all_origins = false
 project.allowed_hosts = ["*"]
 project.show_debug_toolbar = true
 project.show_django_pages = true
+project.broker_type = "sqs"
+project.aws_region = "us-east-1"
 
 [environment.local]
 project.allow_all_origins = true
